@@ -24,7 +24,7 @@
   </a>
 </p>
 
-[Overview](#-overview) • [Architecture](#-architecture) • [Experimental: Latent-Alignment TTT](#-experimental-latent-ttt) • [Installation](#-installation) • [Results](#-results)
+[Overview](#-overview) • [Architecture](#-architecture) • [Experimental: Latent-Alignment TTT](#-experimental-latent-ttt) • [Installation](#-installation) • [Results](#-results) • [Sample](#-sample)
 
 
 </div>
@@ -161,6 +161,19 @@ Low (<0.4): Stochastic / Diffusion-based
 SEAL Delta: Semantic distance between Standard Output and Aligned Output.
 
 Logs saved to /content/ablation_logs/hybrid_calm_z_run.npz
+
+# Sample
+
+```
+--- RESULTS ---
+[Standard]:  you section! out ( to by an by.
+?
+ toiff and and less
+ to so? up to, The the's 46ating in the to my...
+
+[SEAL TTT]: mark French! out was to exercise an body cover was? Iowa toldiff that years lighting peak population...
+
+```
 
 ## 🎛️ Usage Examples
 Basic Training
