@@ -1,11 +1,31 @@
 # Hybrid CALM-on-Z
+
 <div align="center">
 
-Hybrid Continuous Autoregressive Language Model
+**Brain-Inspired Continuous Language Model: Attention and Beyond**
 
-A hybrid implementation of Continuous Autoregressive Language Modeling (CALM) fused with State Space Models (SSM), Hopfield Networks, and Inference-Time Alignment.
+*A hybrid implementation of Continuous Autoregressive Language Modeling (CALM) fused with State Space Models (SSM), Hopfield Networks, and Inference-Time Alignment.*
 
-Overview • Architecture • Latent TTT • Installation • Results
+<p align="center">
+  <a href="https://github.com/google/jax">
+    <img src="https://img.shields.io/badge/JAX-Accelerated-orange?style=flat&logo=python&logoColor=white" alt="JAX">
+  </a>
+  <a href="https://github.com/google/flax">
+    <img src="https://img.shields.io/badge/Flax-Neural%20Networks-blue?style=flat&logo=google&logoColor=white" alt="Flax">
+  </a>
+  <a href="https://cloud.google.com/tpu">
+    <img src="https://img.shields.io/badge/TPU-Optimized-green?style=flat&logo=google-cloud&logoColor=white" alt="TPU">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Status-Experimental-red?style=flat" alt="Status">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+  </a>
+</p>
+
+[Overview](#-overview) • [Architecture](#-architecture) • [Experimental: Latent-Alignment TTT](#-experimental-latent-ttt) • [Installation](#-installation) • [Results](#-results)
+
 
 </div>
 
@@ -17,16 +37,19 @@ Why Hybrid?
 While standard CALM focuses on efficiency via vectorization, this project explores architectural efficiency and inference-time plasticity:
 
 Component	Purpose	Benefit
-🧩 Token VAE	Compresses K tokens → dense latent vector	Reduces generation steps
-⚡ SSM (State Space Models)	Efficient long-range processing	Linear scaling with sequence length
-🔗 Hopfield Networks	Associative memory retrieval	Biological plausibility + dense memory
-🎚️ Gated Energy Head	Refines noise → semantic vectors	Controlled generation (Diffusion-like)
-🧠 SEAL Alignment	New: Inference-Time Weight Updates	Align thought process via gradient descent
-🏗️ Architecture
+```
+-  Token VAE	Compresses K tokens → dense latent vector	Reduces generation steps
+- ⚡ SSM (State Space Models)	Efficient long-range processing	Linear scaling with sequence length
+-  Hopfield Networks	Associative memory retrieval	Biological plausibility + dense memory
+-  Gated Energy Head	Refines noise → semantic vectors	Controlled generation (Diffusion-like)
+-  SEAL Alignment	New: Inference-Time Weight Updates	Align thought process via gradient descent
+```
+
+## 🏗️ Architecture
 Three-Phase Pipeline
 
 Phase 1: Token VAE (Compression)
-
+```
 ┌─────────────────────────────────────────────────────────────────┐
 │  ┌────────┐    ┌─────────┐    ┌─────────┐    ┌────────────┐     │
 │  │ Tokens │───▶│ Encoder │───▶│ Latent  │───▶│  Decoder   │     │
@@ -58,25 +81,13 @@ Phase 3: SEAL Inference (Latent Alignment)
 │  4. Act: Regenerate output with updated brain                   │
 └─────────────────────────────────────────────────────────────────┘
 Hybrid Loss Function
+```
 
-L= 
-Energy Distance
+```
+Loss = Energy Distance (2⋅d_fid−d_div)+λ⋅ Rectified Flow (1−cos(θ))
 
-(2⋅d 
-fid
-​	
- −d 
-div
-​	
- )
-​	
- 
-​	
- +λ⋅ 
-Rectified Flow
-
-(1−cos(θ))
-​	
+​
+```
  
 ​	
  
@@ -87,13 +98,13 @@ Unlike "Pondering" (which reuses static weights), SEAL exploits the differentiab
 
 The model generates potential futures.
 
-A (Simulated) Reward Model evaluates the vector trajectory.
+-> A (Simulated) Reward Model evaluates the vector trajectory.
 
-The model runs Backpropagation on itself during inference.
+--> The model runs Backpropagation on itself during inference.
 
-It temporarily "learns" the concept needed for the specific prompt.
+---> It temporarily "learns" the concept needed for the specific prompt.
 
-Result: In testing, this shifted the model from generating generic stop-words to concrete, concept-aligned entities (e.g., "Iowa", "Population") by optimizing against a target concept vector.
+----> Result: In testing, this shifted the model from generating generic stop-words to concrete, concept-aligned entities (e.g., "Iowa", "Population") by optimizing against a target concept vector.
 
 ## 🚀 Installation
 Prerequisites
