@@ -247,6 +247,8 @@ Rectified Flow: Flow Matching (Lipman et al.)
 
 TTT: Test-Time Training (Sun et al.)
 
+SEAL: (Zweiger et al.)
+
 ## 🤝 Contributing
 Contributions welcome! Areas of interest:
 
