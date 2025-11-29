@@ -1,4 +1,4 @@
-# Hybrid CALM-on-Z
+# Calm-Seal: A hybrid continuous autoregressive language model with self-adaptive alignment
 
 <div align="center">
 
